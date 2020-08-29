@@ -567,14 +567,11 @@ static int bisect_successful(struct bisect_terms *terms)
 
 static enum bisect_error bisect_next(struct bisect_terms *terms, const char *prefix)
 {
-	int no_checkout;
 	enum bisect_error res;
 
 	bisect_autostart(terms);
 	if (bisect_next_check(terms, terms->term_good))
 		return BISECT_FAILED;
-
-	no_checkout = ref_exists("BISECT_HEAD");
 
 	/* Perform all bisection computation */
 	res = bisect_next_all(the_repository, prefix);
